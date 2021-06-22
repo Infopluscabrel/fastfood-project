@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 14 juin 2021 à 16:30
+-- Généré le : mar. 22 juin 2021 à 09:50
 -- Version du serveur :  10.4.14-MariaDB
 -- Version de PHP : 7.4.10
 
@@ -32,6 +32,13 @@ CREATE TABLE `administrateur` (
   `motdepasse` varchar(30) NOT NULL,
   `id_admin` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `administrateur`
+--
+
+INSERT INTO `administrateur` (`login`, `motdepasse`, `id_admin`) VALUES
+('admin', 'admin', 1);
 
 -- --------------------------------------------------------
 
@@ -90,7 +97,9 @@ CREATE TABLE `meilleurs_restaurants` (
 CREATE TABLE `menu` (
   `id_menu` int(11) NOT NULL,
   `nom` varchar(30) NOT NULL,
-  `id_ingredients` int(11) NOT NULL
+  `id_ingredients` int(11) NOT NULL,
+  `photo` text NOT NULL,
+  `prix` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -113,8 +122,18 @@ CREATE TABLE `restaurants` (
   `id` int(11) NOT NULL,
   `nom` varchar(60) NOT NULL,
   `adresse` varchar(60) NOT NULL,
-  `nbre_etoile` int(11) NOT NULL
+  `nbre_etoile` int(11) NOT NULL,
+  `photo` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `restaurants`
+--
+
+INSERT INTO `restaurants` (`id`, `nom`, `adresse`, `nbre_etoile`, `photo`) VALUES
+(1, 'restau', 'Cite', 5, 'Quic.png'),
+(2, '.monreatu.', '.cite.', 0, 'pi.png'),
+(3, 'MBE', 'cite', 4, '5sub.png');
 
 --
 -- Index pour les tables déchargées
@@ -176,7 +195,7 @@ ALTER TABLE `restaurants`
 -- AUTO_INCREMENT pour la table `administrateur`
 --
 ALTER TABLE `administrateur`
-  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `clients`
@@ -212,7 +231,7 @@ ALTER TABLE `menu_ingredients`
 -- AUTO_INCREMENT pour la table `restaurants`
 --
 ALTER TABLE `restaurants`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

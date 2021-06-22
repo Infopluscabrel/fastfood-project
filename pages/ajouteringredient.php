@@ -1,32 +1,7 @@
 <?php
  include '../action/food.php';
 
-  if(isset($_REQUEST['connect'])){
-    $host = "localhost";
-    $base = "fastfood";
-    $user = "root";
-    $mdp = "";
 
-    $con = new PDO('mysql:host=localhost;dbname='.$base.';charset=UTF8', $user, $mdp);
-    $con -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  
-    $login = $_REQUEST['login'] ;
-    $mdp = $_REQUEST['mdp'] ;
-
-    $requete = "select * from administrateur where login='" . $login . "' and motdepasse= '".$mdp ."' " ;
-echo $requete ;
-     $result =  $con->query($requete) ;
-
-     if($result) {
-       echo " connecte" ;
-     
-      
-       header('location:./gestion.php' ) ;
-     } else {
-       echo " erreur d'authentification " ;
-     }
-
-  }
 
 ?>
 <!DOCTYPE html>
@@ -59,9 +34,14 @@ echo $requete ;
                   </nav>
                 </header>
                 <section class="fastfood">
+
+                <div class="container1">
+                                   <a href="ajouterrestau.php" > <button class="btn sucsess" value="" >Ajouter restaurant </button> </a>
+                                   <a href="ajouterrestau.php" > <button class="btn sucsess" value="" > Ajouter Menu </button> </a>
+                            </div>
                          <div class="container1">
                                         <div class="auth" style="display:flex , flex-direction:column , margin-top: 50px;, padding-top:20px">
-                                    <form action="#" style="display:flex , flex-direction:column" method="POST">
+                                    <form action="#" style="display:flex , flex-direction:column">
                                           <div> 
                                           <span>Entrer le login </span> <input type="text" class="input-group" name="login">
                                           

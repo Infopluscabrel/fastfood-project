@@ -1,7 +1,7 @@
 <?php
  include '../action/food.php';
 
-  if(isset($_REQUEST['connect'])){
+ if(isset($_REQUEST['connect'])){
     $host = "localhost";
     $base = "fastfood";
     $user = "root";
@@ -10,15 +10,19 @@
     $con = new PDO('mysql:host=localhost;dbname='.$base.';charset=UTF8', $user, $mdp);
     $con -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   
-    $login = $_REQUEST['login'] ;
-    $mdp = $_REQUEST['mdp'] ;
+    $nom = $_REQUEST['nom'] ;
+    $adresse = $_REQUEST['adresse'] ;
+    $etoile = $_REQUEST['nb'] ;
+    $photo =  $_REQUEST['photo'] ;
+    
 
-    $requete = "select * from administrateur where login='" . $login . "' and motdepasse= '".$mdp ."' " ;
-echo $requete ;
+    $requete = "INSERT INTO `restaurants` (`id`, `nom`, `adresse`, `nbre_etoile`, `photo`) VALUES (NULL, '$nom', '$adresse', '$etoile', '$photo') ";
+        echo $requete ;
      $result =  $con->query($requete) ;
 
      if($result) {
-       echo " connecte" ;
+       echo " <script > alert('restaurant ajouté' ) ;</script>" ;
+       echo " restaurant ajouté" ;
      
       
        header('location:./gestion.php' ) ;
@@ -27,6 +31,8 @@ echo $requete ;
      }
 
   }
+
+
 
 ?>
 <!DOCTYPE html>
@@ -59,18 +65,32 @@ echo $requete ;
                   </nav>
                 </header>
                 <section class="fastfood">
+
+                <div class="container1">
+                                   <a href="ajouterrestau.php" > <button class="btn sucsess" value="" >Ajouter restaurant </button> </a>
+                                   <a href="ajouterrestau.php" > <button class="btn sucsess" value="" > Ajouter Menu </button> </a>
+                                   <a href="ajouteringredient.php" > <button class="btn sucsess" value="" > Ajouter Ingredients </button> </a>
+                            </div>
                          <div class="container1">
                                         <div class="auth" style="display:flex , flex-direction:column , margin-top: 50px;, padding-top:20px">
-                                    <form action="#" style="display:flex , flex-direction:column" method="POST">
+                                    <form action="#" style="display:flex , flex-direction:column">
                                           <div> 
-                                          <span>Entrer le login </span> <input type="text" class="input-group" name="login">
+                                          <span>Nom du restaurant </span> <input type="text" class="input-group" name="nom">
                                           
                                         </div>
                                         <div> 
-                                          <span>Entrer le mot de passe </span> <input type="text" class="input-group" name="mdp">
+                                          <span> Adresse </span> <input type="text" class="input-group" name="adresse">
                                           
                                         </div>
-                                        <input type="SUBMIT" class="btn btn-success " value="Se connecter" name="connect">
+                                        <div> 
+                                          <span>nombre d'etoiles</span> <input type="number" class="input-group" name="nb">
+                                          
+                                        </div>
+                                        <div> 
+                                          <span>photo du restaurant</span> <input type="file" class="input-group" name="photo">
+                                          
+                                        </div>
+                                        <input type="SUBMIT" class="btn btn-success " value="Ajouter" name="connect">
                                     </form>
                                       </div>
                             </div>

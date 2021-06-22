@@ -1,5 +1,37 @@
 <?php
- // include '../action/food.php';
+ include '../action/food.php';
+
+ if(isset($_REQUEST['connect'])){
+  $host = "localhost";
+  $base = "fastfood";
+  $user = "root";
+  $mdp = "";
+
+  $con = new PDO('mysql:host=localhost;dbname='.$base.';charset=UTF8', $user, $mdp);
+  $con -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+  $nom = $_REQUEST['nom'] ;
+  $adresse = $_REQUEST['adresse'] ;
+  $etoile = $_REQUEST['nb'] ;
+  $photo =  $_REQUEST['photo'] ;
+  
+
+  $requete = "INSERT INTO `restaurants` (`id`, `nom`, `adresse`, `nbre_etoile`, `photo`) VALUES (NULL, '$nom', '$adresse', '$etoile', '$photo') ";
+      echo $requete ;
+   $result =  $con->query($requete) ;
+
+   if($result) {
+     echo " <script > alert('restaurant ajouté' ) ;</script>" ;
+     echo " restaurant ajouté" ;
+   
+    
+     header('location:./gestion.php' ) ;
+   } else {
+     echo " erreur d'authentification " ;
+   }
+
+}
+
 ?>
 <!DOCTYPE html>
   <html lang="en" dir="ltr">
@@ -26,7 +58,7 @@
                   </nav>
                 </header>
                 <section>
-                  <form class="" action="index.html" method="post">
+                  <form class="" action="#" method="post">
                     <div class="">
                       Nom:<input type="text" name="nom" >
                     </div>
@@ -34,7 +66,70 @@
                       Prenom:<input type="text" name="Prenom" >
                     </div>
                     <div class="">
-                      Commande:<input type="text" name="commande" >
+                     Restaurant:<select  value="restaurant" name="er
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     ">
+                        <option >  KFC </option > 
+                        <option >  BURGER KING </option >   
+                        <option > QUICK </option >   
+                        <option > MAC DONALD </option >   
+                        <option > PIZZA HUB </option >  
+                        <option > SUBWAY </option >    
+
+                                </select>
+                    </div>
+                    <div class="">
+                      Menu a commander:<select  value="menu">
+                        <option >  burger </option > 
+                        <option >  pizza</option >   
+                        <option > porc roti </option >   
+                        <option >salade </option >   
+                        <option > Riz senegalais </option >  
+                        
+
+                                </select>
                     </div>
                     <div class="">
                       Nombre de Commande:
